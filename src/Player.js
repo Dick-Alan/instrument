@@ -39,6 +39,8 @@ if (props.synth === 'poly') {
     synth = new Tone.PolySynth()  
     synth.set({ 
         oscillator: {
+           
+
             type: wave,         
         },
        
@@ -52,7 +54,7 @@ if (props.synth === 'poly') {
     
     
     })
-    synth.triggerAttackRelease(note, sustain, Tone.context.currentTime).toDestination().connect(feedbackDelay)
+    synth.triggerAttackRelease(note, Tone.context.currentTime).toDestination().connect(feedbackDelay)
     
 }
 
@@ -116,146 +118,145 @@ if (props.major === 'harmonic') {
     
 useEffect(() => {
     const keyDownHandler = event => {
-        
+   
       console.log('User pressed: ', event.key);
       if (event.repeat) {return}
 
     if (event.key === 'a') {
         //root
-        playSynth(notes[0])    
+        synth.triggerAttack(notes[0])
+
         
     
           
     }
         //second
-    if (event.key === 's') {
-        playSynth(notes[1],)
-            
-    
+    if (event.key === 's') {       
+        synth.triggerAttack(notes[1])   
     }
     
     if (event.key === 'd') {
         //third 
-        playSynth(notes[2])     
+        synth.triggerAttack(notes[2])     
     }
     if (event.key === 'f') {
         //fourth
-        playSynth(notes[3])
+        synth.triggerAttack(notes[3])
     }
     if (event.key === 'g') {
         //fiftth
-        playSynth(notes[4])
+        synth.triggerAttack(notes[4])
     }
     if (event.key === 'h') {
         //sixth
-        playSynth(notes[5])
+        synth.triggerAttack(notes[5])
     }
     if (event.key === 'j') {
         //seventh
-        playSynth(notes[6])
+        synth.triggerAttack(notes[6])
     }
     if (event.key === 'k') {
         //octave
-        playSynth(scale*2)
+        synth.triggerAttack(scale*2)
     }
     if (event.key === 'l') {
-        playSynth(notes[1]*2)
+        synth.triggerAttack(notes[1]*2)
     }
     if (event.key === ';') {
-        playSynth(notes[2]*2)
+        synth.triggerAttack(notes[2]*2)
     } 
     if (event.key === 'q') {
-        playSynth(notes[4])
+        synth.triggerAttack(notes[4])
     }
     if (event.key === 'w') {
-        playSynth(notes[5])
+        synth.triggerAttack(notes[5])
     }
     if (event.key === 'e') {
-        playSynth(notes[6])
+        synth.triggerAttack(notes[6])
     }
     if (event.key === 'r') {
-        playSynth(scale*2)
+        synth.triggerAttack(scale*2)
     }
     if (event.key === 't') {
-        playSynth(notes[1]*2)
+        synth.triggerAttack(notes[1]*2)
     }
     if (event.key === 'y') {
-        playSynth(notes[2]*2)
+        synth.triggerAttack(notes[2]*2)
     }
     if (event.key === 'u') {
-        playSynth(notes[3]*2)
+        synth.triggerAttack(notes[3]*2)
     }
     if (event.key === 'i') {
-        playSynth(notes[4]*2)
+        synth.triggerAttack(notes[4]*2)
     }
     if (event.key === 'o') {
-        playSynth(notes[5]*2)
+        synth.triggerAttack(notes[5]*2)
     }
     if (event.key === 'p') {
-        playSynth(notes[6]*2)
+        synth.triggerAttack(notes[6]*2)
     }
     if (event.key === '[') {
-        playSynth(scale*4)
+        synth.triggerAttack(scale*4)
     }
     if (event.key === ']') {
-        playSynth(notes[1]*4)
+        synth.triggerAttack(notes[1]*4)
     }
     if (event.key === 'z') {
-        playSynth(scale/2)
+        synth.triggerAttack(scale/2)
     }
     if (event.key === 'x') {
-        playSynth(notes[1]/2)
+        synth.triggerAttack(notes[1]/2)
     }
     if (event.key === 'c') {
-        playSynth(notes[2]/2)
+        synth.triggerAttack(notes[2]/2)
     }
     if (event.key === 'v') {
-        playSynth(notes[3]/2)
+        synth.triggerAttack(notes[3]/2)
     }
     if (event.key === 'b') {
-        playSynth(notes[4]/2)
+        synth.triggerAttack(notes[4]/2)
     }
     if (event.key === 'n') {
-        playSynth(notes[5]/2)
+        synth.triggerAttack(notes[5]/2)
     }
     if (event.key === 'm') {
-        playSynth(notes[6]/2)
+        synth.triggerAttack(notes[6]/2)
     }
     if (event.key === ',') {
-        playSynth(scale)
+        synth.triggerAttack(scale)
     }
     if (event.key === '.') {
-        playSynth(notes[1])
+        synth.triggerAttack(notes[1])
     }
     if (event.key === '1') {
-        playSynth([notes[0], notes[2], notes[4]])
+        synth.triggerAttack([notes[0], notes[2], notes[4]])
     }
     if (event.key === '2') {
-        playSynth([notes[1], notes[3], notes[5]])
+        synth.triggerAttack([notes[1], notes[3], notes[5]])
     }
     if (event.key === '3') {
-        playSynth([notes[2], notes[4], notes[6]])
+        synth.triggerAttack([notes[2], notes[4], notes[6]])
     }
     if (event.key === '4') {
-        playSynth([notes[3], notes[5], notes[0]*2])
+        synth.triggerAttack([notes[3], notes[5], notes[0]*2])
     }
     if (event.key === '5') {
-        playSynth([notes[4], notes[6], notes[1]*2])
+        synth.triggerAttack([notes[4], notes[6], notes[1]*2])
     }
     if (event.key === '6') {
-        playSynth([notes[5], notes[0]*2, notes[2]*2])
+        synth.triggerAttack([notes[5], notes[0]*2, notes[2]*2])
     }
     if (event.key === '7') {
-        playSynth([notes[6], notes[1]*2, notes[3]*2])
+        synth.triggerAttack([notes[6], notes[1]*2, notes[3]*2])
     }
     if (event.key === '8') {
-        playSynth([notes[0]*2, notes[2]*2, notes[4]*2])
+        synth.triggerAttack([notes[0]*2, notes[2]*2, notes[4]*2])
     }
     if (event.key === '9') {
-        playSynth([notes[1]*2, notes[3]*2, notes[5]*2])
+        synth.triggerAttack([notes[1]*2, notes[3]*2, notes[5]*2])
     }
     if (event.key === '0') {
-        playSynth([notes[2]*2, notes[4]*2, notes[6]*2])
+        synth.triggerAttack([notes[2]*2, notes[4]*2, notes[6]*2])
         
     }
     if (event.key === ' ') {
@@ -280,10 +281,143 @@ useEffect(() => {
 
   useEffect(() => {
     const keyUpHandler = event => {
-        
+        if (!synth) {
+            playSynth()
+        }
+        if (event.key ==='a') {
+            synth.triggerRelease(notes[0])
+        }
+        if (event.key === 's') {       
+            synth.triggerRelease(notes[1])   
+        }
+        if (event.key === 'd') {
+            //third 
+            synth.triggerRelease(notes[2])     
+        }
+        if (event.key === 'f') {
+            //fourth
+            synth.triggerRelease(notes[3])
+        }
+        if (event.key === 'g') {
+            //fiftth
+            synth.triggerRelease(notes[4])
+        }
+        if (event.key === 'h') {
+            //sixth
+            synth.triggerRelease(notes[5])
+        }
+        if (event.key === 'j') {
+            //seventh
+            synth.triggerRelease(notes[6])
+        }
+        if (event.key === 'k') {
+            //octave
+            synth.triggerRelease(scale*2)
+        }
+        if (event.key === 'l') {
+            synth.triggerRelease(notes[1]*2)
+        }
+        if (event.key === ';') {
+            synth.triggerRelease(notes[2]*2)
+        } 
+        if (event.key === 'q') {
+            synth.triggerRelease(notes[4])
+        }
+        if (event.key === 'w') {
+            synth.triggerRelease(notes[5])
+        }
+        if (event.key === 'e') {
+            synth.triggerRelease(notes[6])
+        }
+        if (event.key === 'r') {
+            synth.triggerRelease(scale*2)
+        }
+        if (event.key === 't') {
+            synth.triggerRelease(notes[1]*2)
+        }
+        if (event.key === 'y') {
+            synth.triggerRelease(notes[2]*2)
+        }
+        if (event.key === 'u') {
+            synth.triggerRelease(notes[3]*2)
+        }
+        if (event.key === 'i') {
+            synth.triggerRelease(notes[4]*2)
+        }
+        if (event.key === 'o') {
+            synth.triggerRelease(notes[5]*2)
+        }
+        if (event.key === 'p') {
+            synth.triggerRelease(notes[6]*2)
+        }
+        if (event.key === '[') {
+            synth.triggerRelease(scale*4)
+        }
+        if (event.key === ']') {
+            synth.triggerRelease(notes[1]*4)
+        }
+        if (event.key === 'z') {
+            synth.triggerAttack(scale/2)
+        }
+        if (event.key === 'x') {
+            synth.triggerRelease(notes[1]/2)
+        }
+        if (event.key === 'c') {
+            synth.triggerRelease(notes[2]/2)
+        }
+        if (event.key === 'v') {
+            synth.triggerRelease(notes[3]/2)
+        }
+        if (event.key === 'b') {
+            synth.triggerRelease(notes[4]/2)
+        }
+        if (event.key === 'n') {
+            synth.triggerRelease(notes[5]/2)
+        }
+        if (event.key === 'm') {
+            synth.triggerRelease(notes[6]/2)
+        }
+        if (event.key === ',') {
+            synth.triggerRelease(scale)
+        }
+        if (event.key === '.') {
+            synth.triggerRelease(notes[1])
+        }
+        if (event.key === '1') {
+            synth.triggerRelease([notes[0], notes[2], notes[4]])
+        }
+        if (event.key === '2') {
+            synth.triggerRelease([notes[1], notes[3], notes[5]])
+        }
+        if (event.key === '3') {
+            synth.triggerRelease([notes[2], notes[4], notes[6]])
+        }
+        if (event.key === '4') {
+            synth.triggerRelease([notes[3], notes[5], notes[0]*2])
+        }
+        if (event.key === '5') {
+            synth.triggerRelease([notes[4], notes[6], notes[1]*2])
+        }
+        if (event.key === '6') {
+            synth.triggerRelease([notes[5], notes[0]*2, notes[2]*2])
+        }
+        if (event.key === '7') {
+            synth.triggerRelease([notes[6], notes[1]*2, notes[3]*2])
+        }
+        if (event.key === '8') {
+            synth.triggerRelease([notes[0]*2, notes[2]*2, notes[4]*2])
+        }
+        if (event.key === '9') {
+            synth.triggerRelease([notes[1]*2, notes[3]*2, notes[5]*2])
+        }
+        if (event.key === '0') {
+            synth.triggerRelease([notes[2]*2, notes[4]*2, notes[6]*2])
+            
+        }
         if (event.key === ' ') {
             // sustain -= 10
             synth.releaseAll()
+          
         }
       
      
