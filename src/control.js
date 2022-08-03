@@ -13,6 +13,8 @@ const [attack, setAttack] = useState(1)
 const [release, setRelease] = useState(1)
 const [decay, setDecay] = useState(1)
 const [wave, setWave] = useState('triangle')
+const [major, setMajor] = useState('major')
+const [scale, setScale] = useState(130.813)
 
 
 
@@ -27,6 +29,8 @@ const RenderPlayer = () => {
          decay={decay}
          sustain={sustain}
          wave={wave}
+         major={major}
+         scale={scale}
         
          
          >
@@ -40,6 +44,35 @@ const RenderPlayer = () => {
         
         <Board></Board>
         <div className='controlboard'>
+            <div className='keyselector'>
+                Key:
+                <select onKeyDown={(event) => {
+                    event.preventDefault();
+                        }}
+                className='selector' onClick={(e) => setScale(e.target.value)}>
+                    <option value={130.813}>C</option>
+                    <option value={138.5912}>C#</option>
+                    <option value={146.8323}>D</option>
+                    <option value={155.5634}>D#</option>
+                    <option value={164.8137}>E</option>
+                    <option value={174.6140}>F</option>
+                    <option value={184.9970}>F#</option>
+                    <option value={195.9975}>G</option>
+                    <option value={207.6521}>G#</option>
+                    <option value={110}>A</option>
+                    <option value={116.541}>A#</option>
+                    <option value={123.871}>B</option>
+                </select>
+                <select onKeyDown={(event) => {
+                    event.preventDefault();
+                        }}
+                className='selector' onClick={(e) => setMajor(e.target.value)}>
+                    <option value={'major'}>Major</option>
+                   
+                    <option value={'minor'}>minor</option>
+                    <option value={'harmonic'}>harmonic minor</option>
+                </select>
+            
                 <div className='instrumentselector'>
                     Instrument:
                 <select 
@@ -54,6 +87,7 @@ const RenderPlayer = () => {
                     
                 </select>
                 </div>
+                </div>
            
             
             <div className='delay'>
@@ -66,6 +100,7 @@ const RenderPlayer = () => {
                                             max="100" min="0" 
                                             onChange={(e) => setDelay(e.target.value)}>
                                 </input>
+                                <br></br>
                        Feedback: <input onKeyDown={(event) => {
                                         event.preventDefault();
                                             }} 
@@ -88,6 +123,7 @@ const RenderPlayer = () => {
                                             max="1000" min="0" 
                                             onChange={(e) => setSustain(e.target.value)}>
                                 </input>
+                                <br></br>
                     Attack:
                                 <input onKeyDown={(event) => {
                                         event.preventDefault();
@@ -97,6 +133,7 @@ const RenderPlayer = () => {
                                             max="1000" min="0" 
                                             onChange={(e) => setAttack(e.target.value)}>
                                 </input>
+                                <br></br>
                     Release:
                                 <input onKeyDown={(event) => {
                                         event.preventDefault();
@@ -106,6 +143,7 @@ const RenderPlayer = () => {
                                             max="1000" min="0" 
                                             onChange={(e) => setRelease(e.target.value)}>
                                 </input>
+                                <br></br>
                     Decay:
                                 <input onKeyDown={(event) => {
                                         event.preventDefault();
@@ -122,17 +160,11 @@ const RenderPlayer = () => {
                     
                     
                 </div>
-                <div className='synthsetter'>
+                
             {synth === 'poly'?  
+            <div className='synthsetter'>
             
-            <div> Detune:  <input onKeyDown={(event) => {
-                event.preventDefault();
-                    }} 
-                    className='distortion' 
-                    type="number"  
-                    max="800" min="-800" 
-                    onChange={(e) => setDetune(e.target.value)}>
-                </input>
+            <div>
                
                 Waveform: <select  onKeyDown={(event) => {
                     event.preventDefault();
@@ -146,13 +178,23 @@ const RenderPlayer = () => {
                     <option value={'pulse'}>Pulse</option>
                     <option value={'pwm'}>PWM</option>
                 </select>
+                <br></br>
+                Detune:  <input onKeyDown={(event) => {
+                event.preventDefault();
+                    }} 
+                    className='distortion' 
+                    type="number"  
+                    max="800" min="-800" 
+                    onChange={(e) => setDetune(e.target.value)}>
+                </input>
 
+            </div>
             </div>
             
             
             : null}
             
-            </div>
+           
             
             
            

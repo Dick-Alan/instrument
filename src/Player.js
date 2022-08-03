@@ -19,6 +19,7 @@ var decay = props.decay*0.01
 var sustain = props.sustain*0.01
 var detune = props.detune
 var wave = props.wave
+var scale = props.scale
 function playSynth(note) {
 
 //effects
@@ -33,14 +34,14 @@ if (props.synth === 'poly') {
     synth = new Tone.PolySynth()  
     synth.set({ 
         oscillator: {
-            type: wave
+            type: wave,         
         },
-        detune: detune,
+       
+        detune: detune, 
         envelope: {
             attack: attack,
             decay: decay,
             release: release,
-
         }
        
     
@@ -58,7 +59,7 @@ if (props.synth === 'sampler') {
         attack: attack,
         release: release, 
         decay: decay,
-        detune: detune,
+        
         baseUrl: "https://tonejs.github.io/audio/casio/",
         onload: () => {
             synth.triggerAttackRelease(note, sustain);
@@ -74,136 +75,156 @@ if (props.synth === 'sampler') {
 
 
 }
+
+const r = 1.059463
+var notes = []
+
+if (props.major === 'major') {
+    notes = [scale, scale*r**2, scale*r**4, scale*r**5, scale*r**7, scale*r**9, scale*r**11]
+}
+if (props.major === 'minor') {
+    notes = [scale, scale*r**2, scale*r**3, scale*r**5, scale*r**7, scale*r**8, scale*r**10]
+}
+if (props.major === 'harmonic') {
+    notes = [scale, scale*r**2, scale*r**3, scale*r**5, scale*r**7, scale*r**8, scale*r**11]
+}
     
 useEffect(() => {
     const keyDownHandler = event => {
         
       console.log('User pressed: ', event.key);
-      if (event.key === 'a') {
-        playSynth('C3')
-        
+
+    if (event.key === 'a') {
+        //root
+        playSynth(notes[0])        
     }
+        //second
     if (event.key === 's') {
-        playSynth('D3')
+        playSynth(notes[1]) 
     }
+    
     if (event.key === 'd') {
-        playSynth('E3')
+        //third 
+        playSynth(notes[2])     
     }
     if (event.key === 'f') {
-        playSynth('F3')
+        //fourth
+        playSynth(notes[3])
     }
     if (event.key === 'g') {
-        playSynth('G3')
+        //fiftth
+        playSynth(notes[4])
     }
     if (event.key === 'h') {
-        playSynth('A3')
+        //sixth
+        playSynth(notes[5])
     }
     if (event.key === 'j') {
-        playSynth('B3')
+        //seventh
+        playSynth(notes[6])
     }
     if (event.key === 'k') {
-        playSynth('C4')
+        //octave
+        playSynth(scale*2)
     }
     if (event.key === 'l') {
-        playSynth('D4')
+        playSynth(notes[1]*2)
     }
     if (event.key === ';') {
-        playSynth('E4')
-    }
-   
-    
+        playSynth(notes[2]*2)
+    } 
     if (event.key === 'q') {
-        playSynth('G3')
+        playSynth(notes[4])
     }
     if (event.key === 'w') {
-        playSynth('A3')
+        playSynth(notes[5])
     }
     if (event.key === 'e') {
-        playSynth('B3')
+        playSynth(notes[6])
     }
     if (event.key === 'r') {
-        playSynth('C4')
+        playSynth(scale*2)
     }
     if (event.key === 't') {
-        playSynth('D4')
+        playSynth(notes[1]*2)
     }
     if (event.key === 'y') {
-        playSynth('E4')
+        playSynth(notes[2]*2)
     }
     if (event.key === 'u') {
-        playSynth('F4')
+        playSynth(notes[3]*2)
     }
     if (event.key === 'i') {
-        playSynth('G4')
+        playSynth(notes[4]*2)
     }
     if (event.key === 'o') {
-        playSynth('A4')
+        playSynth(notes[5]*2)
     }
     if (event.key === 'p') {
-        playSynth('B4')
+        playSynth(notes[6]*2)
     }
     if (event.key === '[') {
-        playSynth('C4')
+        playSynth(scale*4)
     }
     if (event.key === ']') {
-        playSynth('D5')
+        playSynth(notes[1]*4)
     }
     if (event.key === 'z') {
-        playSynth(' C2')
+        playSynth(scale/2)
     }
     if (event.key === 'x') {
-        playSynth(' D2')
+        playSynth(notes[1]/2)
     }
     if (event.key === 'c') {
-        playSynth(' E2')
+        playSynth(notes[2]/2)
     }
     if (event.key === 'v') {
-        playSynth(' F2')
+        playSynth(notes[3]/2)
     }
     if (event.key === 'b') {
-        playSynth(' G2')
+        playSynth(notes[4]/2)
     }
     if (event.key === 'n') {
-        playSynth(' A2')
+        playSynth(notes[5]/2)
     }
     if (event.key === 'm') {
-        playSynth(' B2')
+        playSynth(notes[6]/2)
     }
     if (event.key === ',') {
-        playSynth(' C3')
+        playSynth(scale)
     }
     if (event.key === '.') {
-        playSynth(' D3')
+        playSynth(notes[1])
     }
     if (event.key === '1') {
-        playSynth(['C3', 'E3', 'G3'])
+        playSynth([notes[0], notes[2], notes[4]])
     }
     if (event.key === '2') {
-        playSynth(['D3', 'F3', 'A3'])
+        playSynth([notes[1], notes[3], notes[5]])
     }
     if (event.key === '3') {
-        playSynth(['E3', 'G3', 'B3'])
+        playSynth([notes[2], notes[4], notes[6]])
     }
     if (event.key === '4') {
-        playSynth(['F3', 'A3', 'C4'])
+        playSynth([notes[3], notes[5], notes[0]*2])
     }
     if (event.key === '5') {
-        playSynth(['G3', 'B3', 'D4'])
+        playSynth([notes[4], notes[6], notes[1]*2])
     }
     if (event.key === '6') {
-        playSynth(['A3', 'C3', 'E4'])
+        playSynth([notes[5], notes[0]*2, notes[2]*2])
     }
     if (event.key === '7') {
-        playSynth(['B3', 'D3', 'F4'])
+        playSynth([notes[6], notes[1]*2, notes[3]*2])
     }
     if (event.key === '8') {
-        playSynth(['C4', 'E3', 'G4'])
+        playSynth([notes[0]*2, notes[2]*2, notes[4]*2])
     }
     if (event.key === '9') {
-        playSynth(['D4', 'F3', 'A4'])
+        playSynth([notes[1]*2, notes[3]*2, notes[5]*2])
     }
     if (event.key === '0') {
-        playSynth(['E4', 'G4', 'B4'])
+        playSynth([notes[2]*2, notes[4]*2, notes[6]*2])
     }
       if (event.key === 'Enter') {
         event.preventDefault();

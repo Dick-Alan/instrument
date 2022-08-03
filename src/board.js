@@ -40,7 +40,7 @@ const Board = () => {
     }, []);
     
     return(
-      <div className='boardcontainer'>
+      <div className='board'>
             <div className='toprow'>
                 <div className='number'>{key==='1'?
                     <div className='popup' style={{backgroundImage: 'linear-gradient(to right, violet, yellow)'}}></div>:null
