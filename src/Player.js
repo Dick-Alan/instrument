@@ -357,7 +357,7 @@ useEffect(() => {
             synth.triggerRelease(notes[1]*4)
         }
         if (event.key === 'z') {
-            synth.triggerAttack(scale/2)
+            synth.triggerRelease(scale/2)
         }
         if (event.key === 'x') {
             synth.triggerRelease(notes[1]/2)
