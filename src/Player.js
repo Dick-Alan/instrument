@@ -52,7 +52,7 @@ if (props.synth === 'poly') {
     
     
     })
-    synth.triggerAttackRelease(note, sustain, Tone.context.currentTime).toMaster().connect(feedbackDelay)
+    synth.triggerAttackRelease(note, sustain, Tone.context.currentTime).toDestination().connect(feedbackDelay)
     
 }
 
