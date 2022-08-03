@@ -2,16 +2,76 @@ import React, { useEffect } from 'react';
 import './player.css'
 import * as Tone from 'tone';
 
+
+
+
 const keyFunction = () => {
 
   };
 
-const Player = () => {
-
+const Player = (props) => {
+var synth = ''
+var delay = props.delay*0.01
+var feedback = props.feedback*0.01
+var attack = props.attack*0.01
+var release = props.release*0.01
+var decay = props.decay*0.01
+var sustain = props.sustain*0.01
+var detune = props.detune
+var wave = props.wave
 function playSynth(note) {
 
-const poly = new Tone.PolySynth()
-        poly.triggerAttackRelease(note, "8n", Tone.context.currentTime).toDestination()
+//effects
+
+
+
+const feedbackDelay = new Tone.FeedbackDelay(delay, feedback).toDestination();
+
+
+
+if (props.synth === 'poly') {
+    synth = new Tone.PolySynth()  
+    synth.set({ 
+        oscillator: {
+            type: wave
+        },
+        detune: detune,
+        envelope: {
+            attack: attack,
+            decay: decay,
+            release: release,
+
+        }
+       
+    
+    
+    })
+    synth.triggerAttackRelease(note, sustain, Tone.context.currentTime).toDestination().connect(feedbackDelay)
+}
+
+if (props.synth === 'sampler') {
+ 
+    synth = new Tone.Sampler({
+        urls: {       
+            A2: "A2.mp3",
+        },
+        attack: attack,
+        release: release, 
+        decay: decay,
+        detune: detune,
+        baseUrl: "https://tonejs.github.io/audio/casio/",
+        onload: () => {
+            synth.triggerAttackRelease(note, sustain);
+        },
+      
+        
+    }).toDestination().connect(feedbackDelay)
+   
+}
+
+
+
+
 
 }
     
@@ -20,124 +80,130 @@ useEffect(() => {
         
       console.log('User pressed: ', event.key);
       if (event.key === 'a') {
-        playSynth('C4')
+        playSynth('C3')
         
     }
     if (event.key === 's') {
-        playSynth('D4')
+        playSynth('D3')
     }
     if (event.key === 'd') {
-        playSynth('E4')
+        playSynth('E3')
     }
     if (event.key === 'f') {
-        playSynth('F4')
+        playSynth('F3')
     }
     if (event.key === 'g') {
-        playSynth('G4')
+        playSynth('G3')
     }
     if (event.key === 'h') {
-        playSynth('A4')
+        playSynth('A3')
     }
     if (event.key === 'j') {
-        playSynth('B4')
+        playSynth('B3')
     }
     if (event.key === 'k') {
-        playSynth('C5')
+        playSynth('C4')
     }
     if (event.key === 'l') {
-        playSynth('D5')
+        playSynth('D4')
     }
     if (event.key === ';') {
-        playSynth('E5')
+        playSynth('E4')
     }
    
     
     if (event.key === 'q') {
-        playSynth('G4')
+        playSynth('G3')
     }
     if (event.key === 'w') {
-        playSynth('A4')
+        playSynth('A3')
     }
     if (event.key === 'e') {
-        playSynth('B4')
+        playSynth('B3')
     }
     if (event.key === 'r') {
-        playSynth('C5')
+        playSynth('C4')
     }
     if (event.key === 't') {
-        playSynth('D5')
+        playSynth('D4')
     }
     if (event.key === 'y') {
-        playSynth('E5')
+        playSynth('E4')
     }
     if (event.key === 'u') {
-        playSynth('F5')
+        playSynth('F4')
     }
     if (event.key === 'i') {
-        playSynth('G5')
+        playSynth('G4')
     }
     if (event.key === 'o') {
-        playSynth('A5')
+        playSynth('A4')
     }
     if (event.key === 'p') {
-        playSynth('B5')
+        playSynth('B4')
     }
     if (event.key === '[') {
-        playSynth('C6')
+        playSynth('C4')
     }
     if (event.key === ']') {
-        playSynth('D6')
+        playSynth('D5')
     }
     if (event.key === 'z') {
-        playSynth(' C3')
+        playSynth(' C2')
     }
     if (event.key === 'x') {
-        playSynth(' D3')
+        playSynth(' D2')
     }
     if (event.key === 'c') {
-        playSynth(' E3')
+        playSynth(' E2')
     }
     if (event.key === 'v') {
-        playSynth(' F3')
+        playSynth(' F2')
     }
     if (event.key === 'b') {
-        playSynth(' G3')
+        playSynth(' G2')
     }
     if (event.key === 'n') {
-        playSynth(' A3')
+        playSynth(' A2')
     }
     if (event.key === 'm') {
-        playSynth(' B3')
+        playSynth(' B2')
     }
     if (event.key === ',') {
-        playSynth(' C4')
+        playSynth(' C3')
     }
     if (event.key === '.') {
-        playSynth(' D4')
+        playSynth(' D3')
     }
     if (event.key === '1') {
-        playSynth(['C4', 'E4', 'G4'])
+        playSynth(['C3', 'E3', 'G3'])
     }
     if (event.key === '2') {
-        playSynth(['D4', 'F4', 'A4'])
+        playSynth(['D3', 'F3', 'A3'])
     }
     if (event.key === '3') {
-        playSynth(['E4', 'G4', 'B4'])
+        playSynth(['E3', 'G3', 'B3'])
     }
     if (event.key === '4') {
-        playSynth(['F4', 'A4', 'C5'])
+        playSynth(['F3', 'A3', 'C4'])
     }
     if (event.key === '5') {
-        playSynth(['G4', 'B4', 'D5'])
+        playSynth(['G3', 'B3', 'D4'])
     }
     if (event.key === '6') {
-        playSynth(['A4', 'C4', 'E5'])
+        playSynth(['A3', 'C3', 'E4'])
     }
     if (event.key === '7') {
-        playSynth(['B4', 'D4', 'F5'])
+        playSynth(['B3', 'D3', 'F4'])
     }
     if (event.key === '8') {
-        playSynth(['C5', 'E4', 'G5'])
+        playSynth(['C4', 'E3', 'G4'])
+    }
+    if (event.key === '9') {
+        playSynth(['D4', 'F3', 'A4'])
+    }
+    if (event.key === '0') {
+        playSynth(['E4', 'G4', 'B4'])
     }
       if (event.key === 'Enter') {
         event.preventDefault();
@@ -154,13 +220,15 @@ useEffect(() => {
     return () => {
       document.removeEventListener('keydown', keyDownHandler);
     };
-  }, []);
+  },);
     return (
         <div id='wrapper'>
- 
+             
 
         </div>
     )
+
+ 
 }
 
 export default Player;

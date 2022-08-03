@@ -1,14 +1,12 @@
 import React from 'react';
-import Player from './Player';
-import Board from './board';
+
+import Control from './control';
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                <Player></Player>
-                <Board></Board>
-
+               <Control></Control>
             </div>
         )
     }  

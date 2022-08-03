@@ -11,16 +11,16 @@ const keyFunction = () => {
 const Board = () => {
     const [key, setKey] = useState('')
 
-    var pressed = false  
+
     
       
   useEffect(() => {
       const keyDownHandler = event => {
-        pressed = true
+      
         setKey(event.key)
           
         console.log('User pressed: ', event.key);
-        console.log(pressed)
+       
       
         if (event.key === 'Enter') {
           event.preventDefault();
@@ -65,6 +65,12 @@ const Board = () => {
                     }</div>
                 <div className='number'>{key==='8'?
                     <div className='popup' style={{backgroundImage: 'linear-gradient(to right, violet, yellow)'}}></div>:null
+                    }</div>
+                <div className='number'>{key==='9'?
+                    <div className='popup' style={{backgroundImage: 'linear-gradient(to right, indigo, orange)'}}></div>:null
+                    }</div>
+                    <div className='number'>{key==='0'?
+                <div className='popup' style={{backgroundImage: 'linear-gradient(to right, blue, red)'}}></div>:null
                     }</div>
             </div>
             <div className='qwerty'>
