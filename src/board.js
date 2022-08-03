@@ -172,6 +172,11 @@ const Board = () => {
                     <div className='popup' style={{backgroundColor: 'indigo'}}></div>:null
                     }</div> 
             </div>
+            <div className='space'>
+            {key===' '?
+                    <div className='popup' style={{backgroundColor: 'white'}}></div>:null
+                    }
+            </div>
 
 
          <div className='keypop'>{key}

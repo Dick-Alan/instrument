@@ -8,10 +8,10 @@ const [synth, setSynth] = useState('sampler')
 const [detune, setDetune] = useState(0)
 const [delay, setDelay] = useState(0)
 const [feedback, setFeedback] = useState(0)
-const [sustain, setSustain]  = useState(50)
+const [sustain, setSustain]  = useState(20)
 const [attack, setAttack] = useState(1)
-const [release, setRelease] = useState(1)
-const [decay, setDecay] = useState(1)
+const [release, setRelease] = useState(3)
+const [decay, setDecay] = useState(3)
 const [wave, setWave] = useState('triangle')
 const [major, setMajor] = useState('major')
 const [scale, setScale] = useState(130.813)
@@ -81,7 +81,7 @@ const RenderPlayer = () => {
                         }}
                 className='selector' onClick={(e) => setSynth(e.target.value)}>
                     <option value={'sampler'}>Piano Sample</option>
-                  
+                    <option value={'salamander'}>Salamander</option>
                     <option value={'poly'}>Poly Synth</option>
         
                     

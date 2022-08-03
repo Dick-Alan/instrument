@@ -5,6 +5,8 @@ import * as Tone from 'tone';
 
 
 
+
+
 const keyFunction = () => {
 
   };
@@ -20,6 +22,9 @@ var sustain = props.sustain*0.01
 var detune = props.detune
 var wave = props.wave
 var scale = props.scale
+
+
+
 function playSynth(note) {
 
 //effects
@@ -47,7 +52,8 @@ if (props.synth === 'poly') {
     
     
     })
-    synth.triggerAttackRelease(note, sustain, Tone.context.currentTime).toDestination().connect(feedbackDelay)
+    synth.triggerAttackRelease(note, sustain, Tone.context.currentTime).toMaster().connect(feedbackDelay)
+    
 }
 
 if (props.synth === 'sampler') {
@@ -60,12 +66,31 @@ if (props.synth === 'sampler') {
         release: release, 
         decay: decay,
         
+        
         baseUrl: "https://tonejs.github.io/audio/casio/",
         onload: () => {
             synth.triggerAttackRelease(note, sustain);
         },
       
+    }).connect(feedbackDelay)
+   
+}
+if (props.synth === 'salamander') {
+ 
+    synth = new Tone.Sampler({
+        urls: {       
+            A2: "A2.mp3",
+        },
+        attack: attack,
+        release: release, 
+        decay: decay,
         
+        
+        baseUrl: "https://tonejs.github.io/audio/salamander/",
+        onload: () => {
+            synth.triggerAttackRelease(note, sustain);
+        },
+      
     }).toDestination().connect(feedbackDelay)
    
 }
@@ -93,14 +118,20 @@ useEffect(() => {
     const keyDownHandler = event => {
         
       console.log('User pressed: ', event.key);
+      if (event.repeat) {return}
 
     if (event.key === 'a') {
         //root
-        playSynth(notes[0])        
+        playSynth(notes[0])    
+        
+    
+          
     }
         //second
     if (event.key === 's') {
-        playSynth(notes[1]) 
+        playSynth(notes[1],)
+            
+    
     }
     
     if (event.key === 'd') {
@@ -225,6 +256,10 @@ useEffect(() => {
     }
     if (event.key === '0') {
         playSynth([notes[2]*2, notes[4]*2, notes[6]*2])
+        
+    }
+    if (event.key === ' ') {
+        // sustain += 10
     }
       if (event.key === 'Enter') {
         event.preventDefault();
@@ -242,6 +277,27 @@ useEffect(() => {
       document.removeEventListener('keydown', keyDownHandler);
     };
   },);
+
+  useEffect(() => {
+    const keyUpHandler = event => {
+        
+        if (event.key === ' ') {
+            // sustain -= 10
+            synth.releaseAll()
+        }
+      
+     
+      
+    };
+
+    document.addEventListener('keyup', keyUpHandler);
+
+    return () => {
+      document.removeEventListener('keyup', keyUpHandler);
+    };
+  },);
+
+
     return (
         <div id='wrapper'>
              
