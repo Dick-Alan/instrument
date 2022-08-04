@@ -8,16 +8,18 @@
 .keypop {
     height: auto;
     width: auto;
-    margin-top: 30px;
-    border: 4px solid white;
-    font-size: 75px;
-    background-color: black;
+    margin-top: -100px;
+    border: 2px solid white;
+    
+    font-size: 30px;
+    background-color: transparent;
     text-align: center;
-    color: greenyellow;
+    color: white;
     position: fixed;
-    border-radius: 15px;
-    margin-left: 75vw;
+    
+    margin-left: 85%;
     font-family: monospace;
+    text-align: left;
 }
 
 .toprow {

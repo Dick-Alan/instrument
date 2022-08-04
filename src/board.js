@@ -495,8 +495,35 @@ const Board = () => {
                     }
             </div>
 
-
-         <div className='keypop'>  {key}  
+                  
+         <div className='keypop'>  
+          [{key}]
+          <br></br>
+         {(one=== true || eight=== true)&&(<div style={{color: 'violet'}}>I</div>)}
+         {(two===true || nine === true)&&(<div style={{color: 'indigo'}}>II</div>)}  
+         {(three===true || zero === true)&&(<div style={{color: 'blue'}}>III</div>)}
+         {four === true&&(<div style={{color: 'greenyellow'}}>IV</div>)}
+         {five === true&&(<div style={{color: 'yellow'}}>V</div>)}
+         {six === true&&(<div style={{color: 'orange'}}>VI</div>)}
+         {seven === true&&(<div style={{color: 'red'}}>VII</div>)}
+      
+         {(a===true||z===true||r===true||comma===true||k===true||lb===true)&&(<div style={{color: 'violet'}}>root</div>)}
+         
+         {(x===true||s===true||t===true||period===true||l===true||rb===true)&&(<div style={{color: 'indigo'}}>2nd</div>)}
+        
+         {(c===true||d===true||y===true||semi===true)&&(<div style={{color: 'blue'}}>3rd</div>)}
+        
+         {(v===true||f===true||u===true)&&(<div style={{color: 'greenyellow'}}>4th</div>)}
+        
+         {(b===true||g===true||i===true||q===true)&&(<div style={{color: 'yellow'}}>5th</div>)}
+       
+         {(n===true||h===true||o===true||w===true)&&(<div style={{color: 'orange'}}>6th</div>)}
+       
+         {(m===true||j===true||p===true||e===true)&&(<div style={{color: 'red'}}>7th</div>)}
+        
+         
+       
+      
         
          
          </div>   
