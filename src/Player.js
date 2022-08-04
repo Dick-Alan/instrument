@@ -257,8 +257,8 @@ useEffect(() => {
         synth.triggerAttack([notes[2]*2, notes[4]*2, notes[6]*2])
         
     }
-    if (event.key === ' ') {
-    
+    if (event.key === 'Escape') {
+        synth.releaseAll()
     }
       if (event.key === 'Enter') {
         event.preventDefault();

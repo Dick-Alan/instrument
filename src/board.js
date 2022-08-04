@@ -354,6 +354,7 @@ const Board = () => {
     
     return(
       <div className='board'>
+            <div className="indicator">  </div>
             <div className='toprow'>
                 <div className='number'>{one === true?
                     <div className='popup' style={{backgroundImage: 'linear-gradient(to right, violet, yellow)'}}></div>:null
@@ -386,6 +387,7 @@ const Board = () => {
                 <div className='popup' style={{backgroundImage: 'linear-gradient(to right, blue, red)'}}></div>:null
                     }</div>
             </div>
+       
             <div className='qwerty'>
                 <div className='qwert'>{q===true?
                     <div className='popup' style={{backgroundColor: 'yellow'}}></div>:null
@@ -424,6 +426,7 @@ const Board = () => {
                     <div className='popup' style={{backgroundColor: 'indigo'}}></div>:null
                     }</div>
             </div>
+         
             <div className='asdfg'>
                 <div className='asdf'>{a===true?
                     <div className='popup' style={{backgroundColor: 'violet'}}></div>:null
@@ -456,6 +459,7 @@ const Board = () => {
                     <div className='popup' style={{backgroundColor: 'blue'}}></div>:null
                     }</div>
             </div>
+           
             <div className='zxcvb'>
                 <div className='zxcv'>{z===true?
                     <div className='popup' style={{backgroundColor: 'violet'}}></div>:null
