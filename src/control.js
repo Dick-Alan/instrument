@@ -115,15 +115,18 @@ const RenderPlayer = () => {
             <div>  Time: <input onKeyDown={(event) => {
                                         event.preventDefault();
                                             }} 
+                                            value={delay}
                                             className='distortion' 
                                             type="number"  
                                             max="100" min="0" 
                                             onChange={(e) => setDelay(e.target.value)}>
                                 </input>
+                            
                                 <br></br>
                        Feedback: <input onKeyDown={(event) => {
                                         event.preventDefault();
                                             }} 
+                                            value={feedback}
                                             className='distortion' 
                                             type="number"  
                                             max="100" min="0" 
@@ -138,6 +141,7 @@ const RenderPlayer = () => {
                                 <input onKeyDown={(event) => {
                                         event.preventDefault();
                                             }} 
+                                            value={sustain}
                                             className='distortion' 
                                             type="number"  
                                             max="1000" min="0" 
@@ -148,6 +152,7 @@ const RenderPlayer = () => {
                                 <input onKeyDown={(event) => {
                                         event.preventDefault();
                                             }} 
+                                            value={attack}
                                             className='distortion' 
                                             type="number"  
                                             max="1000" min="0" 
@@ -158,6 +163,7 @@ const RenderPlayer = () => {
                                 <input onKeyDown={(event) => {
                                         event.preventDefault();
                                             }} 
+                                            value={release}
                                             className='distortion' 
                                             type="number"  
                                             max="1000" min="0" 
@@ -168,6 +174,7 @@ const RenderPlayer = () => {
                                 <input onKeyDown={(event) => {
                                         event.preventDefault();
                                             }} 
+                                            value={decay}
                                             className='distortion' 
                                             type="number"  
                                             max="1000" min="0" 
@@ -184,6 +191,7 @@ const RenderPlayer = () => {
                 pitchshift:  <input onKeyDown={(event) => {
                 event.preventDefault();
                     }} 
+                    value={pitch}
                     className='distortion' 
                     type="number"  
                     max="36" min="-36" 
@@ -212,6 +220,7 @@ const RenderPlayer = () => {
                 Detune:  <input onKeyDown={(event) => {
                 event.preventDefault();
                     }} 
+                    value={detune}
                     className='distortion' 
                     type="number"  
                     max="800" min="-800" 
