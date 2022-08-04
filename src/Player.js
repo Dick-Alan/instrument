@@ -30,21 +30,22 @@ function playSynth(note) {
 //effects
 
 
-
+const pitchShift = new Tone.PitchShift(props.pitchshift).toDestination();
 const feedbackDelay = new Tone.FeedbackDelay(delay, feedback).toDestination();
 
 
 
 if (props.synth === 'poly') {
-    synth = new Tone.PolySynth()  
+    synth = new Tone.PolySynth()
+    
+
     synth.set({ 
         oscillator: {
-           
-
             type: wave,         
         },
        
-        detune: detune, 
+       
+        detune: detune,
         envelope: {
             attack: attack,
             decay: decay,
@@ -52,9 +53,9 @@ if (props.synth === 'poly') {
         }
        
     
-    
     })
-    synth.triggerAttackRelease(note, Tone.context.currentTime).toDestination().connect(feedbackDelay)
+    
+    synth.connect(feedbackDelay).connect(pitchShift)
     
 }
 
@@ -70,11 +71,8 @@ if (props.synth === 'sampler') {
         
         
         baseUrl: "https://tonejs.github.io/audio/casio/",
-        onload: () => {
-            synth.triggerAttackRelease(note, sustain);
-        },
       
-    }).connect(feedbackDelay)
+    }).connect(feedbackDelay).connect(pitchShift)
    
 }
 if (props.synth === 'salamander') {
@@ -93,7 +91,7 @@ if (props.synth === 'salamander') {
             synth.triggerAttackRelease(note, sustain);
         },
       
-    }).toDestination().connect(feedbackDelay)
+    }).connect(pitchShift).connect(feedbackDelay)
    
 }
 
@@ -118,17 +116,17 @@ if (props.major === 'harmonic') {
     
 useEffect(() => {
     const keyDownHandler = event => {
+    if (event.repeat) {return}
+     
+
    
       console.log('User pressed: ', event.key);
-      if (event.repeat) {return}
+     
 
     if (event.key === 'a') {
         //root
         synth.triggerAttack(notes[0])
-
         
-    
-          
     }
         //second
     if (event.key === 's') {       
@@ -260,7 +258,7 @@ useEffect(() => {
         
     }
     if (event.key === ' ') {
-        // sustain += 10
+    
     }
       if (event.key === 'Enter') {
         event.preventDefault();
@@ -268,6 +266,7 @@ useEffect(() => {
         // 👇️ your logic here
         keyFunction();
       }
+   
      
       
     };
@@ -279,12 +278,16 @@ useEffect(() => {
     };
   },);
 
+  
+
   useEffect(() => {
     const keyUpHandler = event => {
         if (!synth) {
-            playSynth()
+            playSynth() 
         }
-        if (event.key ==='a') {
+
+    
+        if (event.key ==='a' ) {
             synth.triggerRelease(notes[0])
         }
         if (event.key === 's') {       
@@ -297,7 +300,7 @@ useEffect(() => {
         if (event.key === 'f') {
             //fourth
             synth.triggerRelease(notes[3])
-        }
+        }  
         if (event.key === 'g') {
             //fiftth
             synth.triggerRelease(notes[4])
@@ -415,7 +418,7 @@ useEffect(() => {
             
         }
         if (event.key === ' ') {
-            // sustain -= 10
+           
             synth.releaseAll()
           
         }
@@ -423,6 +426,8 @@ useEffect(() => {
      
       
     };
+
+   
 
     document.addEventListener('keyup', keyUpHandler);
 
@@ -433,10 +438,9 @@ useEffect(() => {
 
 
     return (
-        <div id='wrapper'>
-             
-
-        </div>
+            <div>
+         
+            </div>
     )
 
  

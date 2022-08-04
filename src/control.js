@@ -15,6 +15,7 @@ const [decay, setDecay] = useState(3)
 const [wave, setWave] = useState('triangle')
 const [major, setMajor] = useState('major')
 const [scale, setScale] = useState(130.813)
+const [pitch, setPitch] = useState(0)
 
 
 
@@ -31,6 +32,7 @@ const RenderPlayer = () => {
          wave={wave}
          major={major}
          scale={scale}
+         pitchshift={pitch}
         
          
          >
@@ -67,11 +69,12 @@ const RenderPlayer = () => {
                     event.preventDefault();
                         }}
                 className='selector' onClick={(e) => setMajor(e.target.value)}>
-                    <option value={'major'}>Major</option>
-                   
+                    <option value={'major'}>Major</option> 
                     <option value={'minor'}>minor</option>
                     <option value={'harmonic'}>harmonic minor</option>
                 </select>
+               
+                
             
                 <div className='instrumentselector'>
                     Instrument:
@@ -86,7 +89,19 @@ const RenderPlayer = () => {
         
                     
                 </select>
+                <br></br>
+               
                 </div>
+                Octave:
+                <button onKeyDown={(event) => {
+                    event.preventDefault();
+                        }}onClick={(e) => setScale(scale/2)}> - </button>
+                <button onKeyDown={(event) => {
+                    event.preventDefault();
+                        }}onClick={(e) => setScale(scale*2)}> + </button>
+                        <br></br>
+                      
+                {scale} Hz
                 </div>
            
             
@@ -160,6 +175,16 @@ const RenderPlayer = () => {
                     
                     
                 </div>
+                <div className='envelopecontainer'>
+                pitchshift:  <input onKeyDown={(event) => {
+                event.preventDefault();
+                    }} 
+                    className='distortion' 
+                    type="number"  
+                    max="36" min="-36" 
+                    onChange={(e) => setPitch(e.target.value)}>
+                </input>
+                </div>
                 
             {synth === 'poly'?  
             <div className='synthsetter'>
@@ -194,14 +219,7 @@ const RenderPlayer = () => {
             
             : null}
             
-           
-            
-            
-           
-
-
-            
-            
+               
        
         </div>
        <RenderPlayer></RenderPlayer>
