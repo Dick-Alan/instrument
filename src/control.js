@@ -4,7 +4,7 @@ import Board from './board';
 import './player.css'
 
 const Control = () => {
-const [synth, setSynth] = useState('sampler')
+const [synth, setSynth] = useState('poly')
 const [detune, setDetune] = useState(0)
 const [delay, setDelay] = useState(0)
 const [feedback, setFeedback] = useState(0)
@@ -83,25 +83,30 @@ const RenderPlayer = () => {
                     event.preventDefault();
                         }}
                 className='selector' onClick={(e) => setSynth(e.target.value)}>
+                    <option value={'poly'}>Poly Synth</option>
                     <option value={'sampler'}>Piano Sample</option>
                     <option value={'salamander'}>Salamander</option>
-                    <option value={'poly'}>Poly Synth</option>
+                    
         
                     
                 </select>
                 <br></br>
                
                 </div>
+                
+                <div>
                 Octave:
-                <button onKeyDown={(event) => {
+              
+                <button className='octave' onKeyDown={(event) => {
                     event.preventDefault();
                         }}onClick={(e) => setScale(scale/2)}> - </button>
-                <button onKeyDown={(event) => {
+                <button className='octave' onKeyDown={(event) => {
                     event.preventDefault();
                         }}onClick={(e) => setScale(scale*2)}> + </button>
-                        <br></br>
+                        
                       
                 {scale} Hz
+                </div>
                 </div>
            
             

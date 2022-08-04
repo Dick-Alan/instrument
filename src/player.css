@@ -205,4 +205,9 @@
     width: 400px;
     margin-left: 50vw;
 }
+.octave {
+    background-color: black;
+    color: greenyellow;
+    border: 1px solid greenyellow;
+}
 
