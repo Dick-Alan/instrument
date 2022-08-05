@@ -16,6 +16,7 @@ const [wave, setWave] = useState('triangle')
 const [major, setMajor] = useState('major')
 const [scale, setScale] = useState(130.813)
 const [pitch, setPitch] = useState(0)
+const [volume, setVolume] = useState(0)
 
 
 
@@ -33,6 +34,7 @@ const RenderPlayer = () => {
          major={major}
          scale={scale}
          pitchshift={pitch}
+         volume={volume}
         
          
          >
@@ -135,6 +137,17 @@ const RenderPlayer = () => {
             </div>
             </div>
             <div className='envelopecontainer'>
+                Volume:
+            <input onKeyDown={(event) => {
+                                        event.preventDefault();
+                                            }} 
+                                            value={volume}
+                                            className='distortion' 
+                                            type="number"  
+                                            max="50" min="-50" 
+                                            onChange={(e) => setVolume(e.target.value)}>
+                                </input>
+                                <br></br>
                 Envelope:
                 <div className='envelopeoptions'>
                     Sustain:

@@ -44,7 +44,7 @@ if (props.synth === 'poly') {
             type: wave,         
         },
        
-       
+        volume: props.volume,
         detune: detune,
         envelope: {
             attack: attack,
@@ -66,6 +66,7 @@ if (props.synth === 'sampler') {
         urls: {       
             A2: "A2.mp3",
         },
+        volume: props.volume,
         attack: attack,
         release: release, 
         decay: decay,
@@ -82,6 +83,7 @@ if (props.synth === 'salamander') {
         urls: {       
             A2: "A2.mp3",
         },
+        volume: props.volume,
         attack: attack,
         release: release, 
         decay: decay,
